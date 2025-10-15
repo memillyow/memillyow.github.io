@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Milly's CS Portfolio - Home</title>
+
+  <!-- Tailwind & Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Ribbon ticker (replaces old sprinkle code) -->
+  <style>
+    /* Continuous leftward scroll for the top "WEB DESIGN" ribbon */
+    .ticker-track {
+      display: inline-block;
+      white-space: nowrap;
+      will-change: transform;
+      animation: ticker-scroll 18s linear infinite;
+    }
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    /* Pause the scroll on hover for a tactile feel */
+    #webRibbon:hover .ticker-track { animation-play-state: paused; }
+
+    /* Respect reduced-motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-track { animation-duration: 0.001s; animation-iteration-count: 1; }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col bg-neutral-950 text-neutral-200">
+  <!-- ===== Top WEB DESIGN Ribbon (replaces previous sprinkle header) ===== -->
+  <div id="webRibbon" class="relative h-10 bg-black overflow-hidden border-b border-neutral-800">
+    <div class="absolute inset-0 flex items-center">
+      <div class="ticker-track text-white font-semibold tracking-widest uppercase">
+        <span class="inline-block px-6">Web Design ✦</span>
+        <span class="inline-block px-6">Web Design ✦</span>
+        <span class="inline-block px-6">Web Design ✦</span>
+        <span class="inline-block px-6">Web Design ✦</span>
+        <span class="inline-block px-6">Web Design ✦</span>
+        <span class="inline-block px-6">Web Design ✦</span>
+        <!-- duplicate set for seamless loop -->
+        <span class="inline-block px-6">Web Design ✦</span>
+        <span class="inline-block px-6">Web Design ✦</span>
+        <span class="inline-block px-6">Web Design ✦</span>
+        <span class="inline-block px-6">Web Design ✦</span>
+        <span class="inline-block px-6">Web Design ✦</span>
+        <span class="inline-block px-6">Web Design ✦</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Navigation ===== -->
+  <nav class="bg-neutral-900/90 backdrop-blur p-4 border-b border-neutral-800 sticky top-0 z-20">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="text-xl sm:text-2xl font-semibold text-white">Milly Omer</div>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center justify-end space-x-4">
+        <a href="index.html" aria-current="page"
+           class="flex items-center gap-1 text-neutral-200 hover:text-white underline underline-offset-4 decoration-white/40 transition">
+          <i data-lucide="home" class="w-4 h-4" aria-hidden="true"></i><span>Home</span>
+        </a>
+        <a href="resume.html" class="flex items-center gap-1 text-neutral-300 hover:text-white transition">
+          <i data-lucide="file-text" class="w-4 h-4" aria-hidden="true"></i><span>Resume</span>
+        </a>
+        <a href="projects.html" class="flex items-center gap-1 text-neutral-300 hover:text-white transition">
+          <i data-lucide="code" class="w-4 h-4" aria-hidden="true"></i><span>Projects</span>
+        </a>
+        <a href="https://github.com/memillyow" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-1 text-neutral-300 hover:text-white transition"
+           aria-label="Open milly's GitHub in a new tab">
+          <i data-lucide="github" class="w-4 h-4" aria-hidden="true"></i><span>GitHub</span>
+        </a>
+        <a href="contact-me.html" class="flex items-center gap-1 text-neutral-300 hover:text-white transition">
+          <i data-lucide="mail" class="w-4 h-4" aria-hidden="true"></i><span>Contact</span>
+        </a>
+      </div>
+
+      <!-- Mobile toggle -->
+      <button id="menuToggle"
+              class="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-neutral-200 hover:bg-neutral-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500"
+              aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu"
+         class="hidden md:hidden mt-3 absolute right-4 left-4 bg-neutral-900 border border-neutral-800 rounded-xl p-4 shadow-xl z-10">
+      <a href="index.html" aria-current="page" class="flex items-center gap-2 text-neutral-200 hover:text-white py-2">
+        <i data-lucide="home" class="w-4 h-4" aria-hidden="true"></i><span>Home</span>
+      </a>
+      <a href="resume.html" class="flex items-center gap-2 text-neutral-300 hover:text-white py-2">
+        <i data-lucide="file-text" class="w-4 h-4" aria-hidden="true"></i><span>Resume</span>
+      </a>
+      <a href="projects.html" class="flex items-center gap-2 text-neutral-300 hover:text-white py-2">
+        <i data-lucide="code" class="w-4 h-4" aria-hidden="true"></i><span>Projects</span>
+      </a>
+      <a href="https://github.com/memillyow" target="_blank" rel="noopener noreferrer"
+         class="flex items-center gap-2 text-neutral-300 hover:text-white py-2">
+        <i data-lucide="github" class="w-4 h-4" aria-hidden="true"></i><span>GitHub</span>
+      </a>
+      <a href="contact-me.html" class="flex items-center gap-2 text-neutral-300 hover:text-white py-2">
+        <i data-lucide="mail" class="w-4 h-4" aria-hidden="true"></i><span>Contact</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ===== Main ===== -->
+  <main class="flex-grow container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4 sm:mb-6">About Me</h1>
+
+    <!-- Retro window frame (recolored) -->
+    <div class="bg-neutral-900 rounded-2xl shadow-xl p-4 sm:p-6 relative overflow-hidden border border-neutral-800">
+      <!-- faux window chrome -->
+      <div class="absolute inset-0 pointer-events-none rounded-2xl">
+        <div class="absolute top-0 left-0 right-0 h-8 bg-gradient-to-r from-neutral-800 to-neutral-700 flex items-center justify-between px-4 rounded-t-2xl border-b border-neutral-700">
+          <div class="flex items-center gap-2 text-neutral-300">
+            <i data-lucide="heart" class="w-3.5 h-3.5 text-red-400" aria-hidden="true"></i>
+            <i data-lucide="heart" class="w-3.5 h-3.5 text-yellow-400" aria-hidden="true"></i>
+            <i data-lucide="heart" class="w-3.5 h-3.5 text-green-400" aria-hidden="true"></i>
+            <div class="ml-1 text-white/90 text-sm font-semibold">about_me.exe</div>
+          </div>
+          <div class="flex items-center gap-2 text-white/90">
+            <i data-lucide="minimize-2" class="w-4 h-4" aria-hidden="true"></i>
+            <i data-lucide="maximize-2" class="w-4 h-4" aria-hidden="true"></i>
+            <i data-lucide="x" class="w-4 h-4" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 bg-neutral-950 rounded-xl p-4 border border-neutral-800 shadow-inner">
+        <p class="text-base sm:text-lg text-neutral-200/90 mb-4">
+          Hey! My name is <span class="font-medium">Jamil Omer</span>, and I go by <span class="font-medium">milly</span>.
+          I’m a software developer with a B.S. in Computer Science (Software Engineering concentration) from Tennessee Technological University.
+        </p>
+        <p class="text-base sm:text-lg text-neutral-200/90 mb-4">
+          I got into coding through video games — dream goal is to ship my own game someday.
+          The more I learn, the more building things just clicks. Cracking open VS Code, launching Spotify, and getting lost in a problem is my happy place.
+        </p>
+        <p class="text-base sm:text-lg text-neutral-200/90">
+          Poke around the site: current projects, what I’m listening to, and the serious stuff like my GitHub and LinkedIn.
+          If you want to collaborate, hit the contact page — I’m always down to build.
+        </p>
+
+        <!-- ASCII block kept, but in <pre> for layout control -->
+        <pre class="mt-6 text-xs sm:text-sm leading-tight text-neutral-400 overflow-x-auto p-3 rounded-lg bg-neutral-900 border border-neutral-800">
+⠀⠀⠀⠀⠀⠀⠀⠀
+                   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢺⡇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⠀⢀⣀⣀⣀⣀⠀⠀⠀⢴⣴⡶⠶⠾⠞⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⡄⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠇⠀⠀⠀
+⠀⠀⠀⠀⠀⣴⣦⣦⠶⠟⠋⠀⠀⣀⠀⠀⠀⠉⠙⢿⡆⠀⠘⣷⣀⣤⣾⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⡇⠀⢘⣿⣧⡀⠀⠀⣷⠛⠙⠛⠲⢤⡀⠀⢰⡿⠀⠀⢀⣤⡄⠀⠀⠀⢸⡟⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢿⡧⠀⠀⠀⠀⠀⠀⣿⠁⠀⠀⠀⠀⢸⡇⠀⠀⢻⡏⠉⠉⠙⠛⠷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣄⢸⡏⠈⢿⡆⠐⣿⠀⠀⠀⠀⠀⣿⠀⣽⡇⠀⢀⡾⢻⡿⠀⠀⠀⠺⠇⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠸⣿⣤⣤⣤⡄⠀⠐⣿⡀⠀⠀⠀⢀⡿⠁⠀⠀⢸⠇⠀⠀⠀⠀⠀⠀⠻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠀⠀⠸⣯⠀⢽⡇⠀⠀⠀⣴⠏⠀⣿⠃⣰⡟⠁⢹⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠹⣦⠀⠀⠀⠀⠀⠀⠉⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⣤⣤⣤⡼⠏⠀⠀⠉⠓⠶⠛⠉⠀⠀⠘⠛⠋⠀⠀⠹⢇⠀⠀⢠⣦⣶⠄⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠷⠿⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣤⣶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣀⠀⠀⠀
+⣰⠶⠶⣦⣀⠀⢀⡞⠁⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣶⠂⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⠋⠀⠸⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢴⡶⣄⠀⠀⠀⠀⣠⠞⣩⠟⠀⠀⠀
+⢸⡇⠀⠈⠹⠿⠏⠀⢀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡇⠀⠸⢿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣶⡿⠁⠀⠀⠀⢿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣇⢹⣇⠀⠀⣾⠇⣸⠇⠀⠀⠀⠀
+⠈⠻⣦⣀⠀⠀⠀⠀⣼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢐⣿⠀⠀⠀⠈⠻⣶⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⠏⠀⠀⠀⠀⠀⠈⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡄⠹⣷⡼⢋⡾⠃⠀⠀⠀⠀⠀
+⠀⠀⠈⠛⠷⣦⠄⢰⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢾⡇⠀⠀⠀⠀⠀⠀⠻⢢⣄⣀⣀⣀⣀⣀⣀⣀⣸⡇⠀⠀⠀⠀⠀⠀⠀⠸⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣷⠀⠀⣠⠟⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠐⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠉⠉⠉⠉⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⢿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣧⣠⠇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⣠⠖⢻⡇⠀⠀⠀⢸⡯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⣿⠈⠛⠁⢀⡞⠁⠀⠀⠀⢺⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡀⠀⣠⠟⠁⠀⠀⠀⠀⠘⠏⡀⠀⠀⠀⢠⣤⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⣿⡷⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⢀⠀⠀⢀⣴⣤⠀⠀⠀⠀⠈⠛⢶⠃⠀⠀⠀⠀⠀⡀⠀⣼⠏⠀⠀⠀⠘⠿⣾⠿⠂⠀⠀⠀⣀⡄⠀⠀⠀⠀⠀⠘⠿⠿⠃⠀⠀⠀⠀⠀⣦⣄⣄⣤⣴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠘⣷⠶⠿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠚⠛⠛⣿⠟⠁⡀⠀⣠⣴⠀⠀⠀⠀⠀⣰⡿⠻⣧⡀⠀⠀⠀⠀⠀⢀⡤⢀⡴⣶⣇⠀⣿⡍⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠘⣧⣴⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⣰⣧⠞⢻⠃⠀⠀⠀⠀⠘⠉⠀⠀⠈⠛⠀⠀⠀⠀⠀⠘⠛⠋⠀⠋⠉⢀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⣴⠟⢿⡄⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠿⢦⣤⣤⣤⠀⠀⠀⢀⡀⠀⠀⠀⠀⣠⠞⣿⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣶⣆⠀⢠⣴⡆⠀⠀⠀⠀⠈⠛⢶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢨⡿⠀⠀⠀⠀⠀⠀⠀⢰⣟⠛⢷⣄⣀⡴⠁⣴⠃⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣠⣤⣀⡀⠀⢿⠠⣿⣾⣿⢻⡇⠀⠀⠀⠀⠀⠀⠀⠹⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢋⡀⠀⠀⠀⠀⠀⠀⠈⢿⡄⠀⠉⠉⠀⣼⠃⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣿⡈⢹⣿⢷⣿⣾⣿⣿⠇⡼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣆⠀⠀⠀⠀⠀⠀⠈⠻⣦⡀⠀⣰⠃⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠸⣇⢸⣿⣿⢽⣿⣿⡏⣸⠃⠀⠀⠀⠀⠀⣼⡗⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣷⡀⠀⠀⠀⠀⠀⠀⠉⠹⡶⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠹⣯⣿⠃⣿⣿⣿⢺⠇⠀⠀⠀⠀⣠⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣄⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠈⠿⣦⣿⣿⢇⡎⠀⠀⠀⣠⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣄
+⠀⠀⠀⠀⠀⠀⠀⣠⡀⠈⠻⢷⡾⠀⠀⢀⣾⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⡀⠀⠀⣠⠏⡽
+⠀⠀⠀⠀⠀⠀⠀⠹⣿⣦⣄⢸⢿⠀⣴⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣦⡀⠀⠀⠀⠀⢼⡏⠉⠛⠛⠛⠁⢰⠇
+⠀⠀⠀⠀⠀⠀⠀⠀⠹⣷⡉⢿⣿⣰⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢷⣀⠀⠀⠀⠈⣿⡀⠀⠀⠀⠀⡿⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⢷⣄⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣦⡀⠀⠀⠈⠻⣦⣤⣀⠸⠁⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡿⣿⡄⠀⠀⠀⠀⠀⠀⢀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⢿⡄⠀⠀⠀⠀⠀⠉⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡿⠀⣹⡂⠀⠀⠀⠀⠠⣶⠿⢛⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠻⠷⣶⣄⠀⠀⠀⠀⠀⠀⠈⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⡿⠁⠀⢘⡅⠀⠀⣠⣶⡷⠀⠀⢸⡅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡃⠀⠀⠙⢷⣄⠀⠀⠀⠀⠀⠈⣱⡄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢸⣧⠀⠀⠈⣷⠀⣺⠟⠋⠀⠀⠀⣼⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠘⠿⣦⣴⣶⣶⡾⠟⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠸⠻⢷⣤⣀⣹⠞⠁⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣽⡇⠀⠀⠀⠀⠀⠀⠀⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⢺⡀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠃⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣺⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀
+        </pre>
+      </div>
+    </div>
+
+    <!-- Icon Grid (cards are full clickable links) -->
+    <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <a href="projects.html"
+         class="group flex flex-col items-center justify-center bg-white/5 hover:bg-white/10 border border-neutral-800 rounded-xl p-4 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500">
+        <i data-lucide="code" class="w-8 h-8 text-white" aria-hidden="true"></i>
+        <span class="mt-2 text-sm font-medium text-neutral-200">My Projects</span>
+      </a>
+
+      <a href="resume.html"
+         class="group flex flex-col items-center justify-center bg-white/5 hover:bg-white/10 border border-neutral-800 rounded-xl p-4 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500">
+        <i data-lucide="file-text" class="w-8 h-8 text-white" aria-hidden="true"></i>
+        <span class="mt-2 text-sm font-medium text-neutral-200">Resume.pdf</span>
+      </a>
+
+      <a href="contact-me.html"
+         class="group flex flex-col items-center justify-center bg-white/5 hover:bg-white/10 border border-neutral-800 rounded-xl p-4 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500">
+        <i data-lucide="mail" class="w-8 h-8 text-white" aria-hidden="true"></i>
+        <span class="mt-2 text-sm font-medium text-neutral-200">Contact Me</span>
+      </a>
+
+      <a href="https://github.com/memillyow" target="_blank" rel="noopener noreferrer"
+         class="group flex flex-col items-center justify-center bg-white/5 hover:bg-white/10 border border-neutral-800 rounded-xl p-4 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500"
+         aria-label="Open milly's GitHub in a new tab">
+        <i data-lucide="github" class="w-8 h-8 text-white" aria-hidden="true"></i>
+        <span class="mt-2 text-sm font-medium text-neutral-200">GitHub</span>
+      </a>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="bg-neutral-900 border-t border-neutral-800 p-4 sm:p-6">
+    <div class="container mx-auto flex flex-col items-center">
+      <div class="flex flex-wrap justify-center gap-2 mb-3">
+        <a href="index.html" aria-current="page" class="flex items-center gap-1 text-neutral-300 hover:text-white p-2 transition">
+          <i data-lucide="home" class="w-4 h-4" aria-hidden="true"></i><span>Home</span>
+        </a>
+        <a href="resume.html" class="flex items-center gap-1 text-neutral-300 hover:text-white p-2 transition">
+          <i data-lucide="file-text" class="w-4 h-4" aria-hidden="true"></i><span>Resume</span>
+        </a>
+        <a href="projects.html" class="flex items-center gap-1 text-neutral-300 hover:text-white p-2 transition">
+          <i data-lucide="code" class="w-4 h-4" aria-hidden="true"></i><span>Projects</span>
+        </a>
+        <a href="https://github.com/memillyow" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-1 text-neutral-300 hover:text-white p-2 transition">
+          <i data-lucide="github" class="w-4 h-4" aria-hidden="true"></i><span>GitHub</span>
+        </a>
+        <a href="contact-me.html" class="flex items-center gap-1 text-neutral-300 hover:text-white p-2 transition">
+          <i data-lucide="mail" class="w-4 h-4" aria-hidden="true"></i><span>Contact</span>
+        </a>
+      </div>
+      <div class="text-neutral-400 text-sm">
+        Made with the help of 4 energy drinks and an all-nighter by milly ☕
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Scripts ===== -->
+  <script>
+    // Render Lucide icons after DOM loads
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+
+    // Mobile menu toggle with ARIA state
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', () => {
+      const hidden = mobileMenu.classList.toggle('hidden');
+      menuToggle.setAttribute('aria-expanded', String(!hidden));
+    });
+  </script>
+</body>
+</html>
