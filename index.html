@@ -122,11 +122,13 @@
           You can also view the important stuff like my GitHub or LinkedIn! Don't get lost!
         </p>
         
-        <!-- ASCII block kept, but in <pre> for layout control -->
-       <div class="flex justify-center items-center py-6 select-none">
-        <div class="w-full flex justify-center overflow-hidden">
-          <div class="transform scale-100 md:scale-100 sm:scale-[0.85] xs:scale-[0.7] origin-top transition-transform">
-            <pre class="font-mono text-[10px] sm:text-xs md:text-sm leading-tight text-center whitespace-pre m-0 p-0 text-neutral-300 bg-transparent border-0">
+       <!-- ===== ASCII + Comment Box Split ===== -->
+<div class="flex flex-col md:flex-row justify-between items-start gap-6 py-6 select-none">
+
+  <!-- 🐱 ASCII Kittens (Left) -->
+  <div class="flex-shrink-0 md:w-1/2 w-full flex justify-start">
+    <pre class="font-mono text-[10px] sm:text-xs md:text-sm leading-tight text-left whitespace-pre m-0 p-0 text-neutral-300 bg-transparent border-0 overflow-auto">
+
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠜⠳⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡜⠁⠀⠀⠘⢳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⢀⡟⠀⠀⠀⠀⠀⠀⠹⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -156,11 +158,26 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⢹⡀⠀⠀⠀⠀⢤⣀⡄⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⠀⠀⠀⠹⣄⠀ ⠀⠀⡈⣟⡄⠀⠀⠀⣠⠉⠀⠀⠀⠀⠀⠀⢀⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⠻⠿⠿⠿⠟⠛⠛⠻⠿⠟⠛⠉⠙⠛⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠈⠓⠚⠒⠋⠙⠓⠶⠤⠖⠓⠢⠦⠤⠤⠤⠖⠒⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-              </pre>
-            </div>
-          </div>
-        </div>
+    </pre>
+  </div>
 
+  <!-- 💬 Comment Box (Right) -->
+  <section class="md:w-1/2 w-full bg-neutral-900 p-4 rounded-xl border border-neutral-800 shadow-lg">
+    <h2 class="text-xl font-semibold mb-3 text-white">Leave a Comment</h2>
+    <form id="commentForm" class="flex flex-col gap-2">
+      <input id="alias" type="text" placeholder="Your name or alias"
+            class="p-2 rounded bg-neutral-800 text-white placeholder-neutral-500 border border-neutral-700">
+      <textarea id="message" placeholder="Your comment..."
+                class="p-2 rounded bg-neutral-800 text-white placeholder-neutral-500 border border-neutral-700 min-h-[100px]"></textarea>
+      <button type="submit"
+              class="bg-white/10 hover:bg-white/20 text-white font-medium py-2 rounded transition">
+        Submit
+      </button>
+    </form>
+
+    <div id="commentsList" class="mt-4 space-y-3"></div>
+  </section>
+</div>
       </div>
     </div>
 
@@ -236,5 +253,63 @@
       menuToggle.setAttribute('aria-expanded', String(!hidden));
     });
   </script>
+
+  <!-- ===== Firebase Comment Box ===== -->
+<script type="module">
+  // Import Firebase modules from CDN
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { 
+    getFirestore, collection, addDoc, serverTimestamp, 
+    query, orderBy, onSnapshot 
+  } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+  // Your Firebase config 👇 (paste your values here)
+  const firebaseConfig = {
+    apiKey: "AIzaSyCWfH...yourkey...",
+    authDomain: "memillyow-chatbox.firebaseapp.com",
+    projectId: "memillyow-chatbox",
+    storageBucket: "memillyow-chatbox.appspot.com",
+    messagingSenderId: "479296339153",
+    appId: "1:479296339153:web:f4b024bc688261f7b299f0"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // ====== Handle new comment submission ======
+  const form = document.getElementById('commentForm');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const alias = document.getElementById('alias').value || "Anonymous";
+    const message = document.getElementById('message').value.trim();
+    if (!message) return;
+
+    await addDoc(collection(db, "comments"), {
+      alias,
+      message,
+      timestamp: serverTimestamp()
+    });
+    form.reset();
+  });
+
+  // ====== Real-time comment updates ======
+  const commentsDiv = document.getElementById('commentsList');
+  const q = query(collection(db, "comments"), orderBy("timestamp", "desc"));
+
+  onSnapshot(q, (snapshot) => {
+    commentsDiv.innerHTML = "";
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      const date = data.timestamp?.toDate().toLocaleString() || "";
+      commentsDiv.innerHTML += `
+        <div class="p-3 bg-neutral-800 rounded border border-neutral-700">
+          <p class="font-semibold text-white">${data.alias}</p>
+          <p class="text-neutral-300">${data.message}</p>
+          <p class="text-xs text-neutral-500">${date}</p>
+        </div>`;
+    });
+  });
+</script>
 </body>
 </html>
