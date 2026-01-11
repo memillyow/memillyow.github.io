@@ -39,7 +39,6 @@
 
 <!-- ===== MAIN ===== -->
 <main class="flex-grow container mx-auto px-4 py-8">
-
   <h1 class="text-3xl font-bold mb-6 text-white">Projects</h1>
 
   <!-- Retro window -->
@@ -61,7 +60,6 @@
       <div id="projectsList" class="space-y-4"></div>
     </div>
   </div>
-
 </main>
 
 <footer class="bg-neutral-900 border-t border-neutral-800 p-4 text-center text-neutral-400 text-sm">
@@ -96,15 +94,25 @@ async function fetchRepos() {
   return res.json();
 }
 
-/* Helpers */
-function format(text) {
-  return text.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+/* ===== Formatters (IMPORTANT) ===== */
+
+/* Repo names: preserve identity */
+function formatRepoName(name) {
+  return name.replace(/-/g, " ");
 }
 
+/* Tags: prettify for UI */
+function formatTag(tag) {
+  return tag
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+/* Normalize repo → project */
 function mapRepo(repo) {
   return {
     id: repo.id,
-    title: format(repo.name),
+    title: formatRepoName(repo.name),
     description: repo.description || "No description provided.",
     url: repo.html_url,
     tags: repo.topics || [],
@@ -112,7 +120,7 @@ function mapRepo(repo) {
   };
 }
 
-/* Render tags dynamically */
+/* Render tag filters */
 function renderTags() {
   const container = document.getElementById("tagContainer");
   const allTags = [...new Set(projects.flatMap(p => p.tags))];
@@ -131,7 +139,7 @@ function renderTags() {
       ${selectedTags.includes(tag)
         ? 'bg-white text-neutral-900'
         : 'bg-neutral-900 hover:bg-neutral-800'}">
-      ${format(tag)}
+      ${formatTag(tag)}
     </button>
   `).join("");
 }
@@ -166,7 +174,7 @@ function renderProjects() {
       <div class="flex flex-wrap gap-2 mt-2">
         ${p.tags.map(t => `
           <span class="text-xs bg-neutral-800 px-2 py-1 rounded-full">
-            ${format(t)}
+            ${formatTag(t)}
           </span>
         `).join("")}
       </div>
