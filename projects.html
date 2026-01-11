@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Milly's CS Portfolio – Projects</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="min-h-screen flex flex-col bg-neutral-950 text-neutral-200">
+
+<!-- ===== NAV ===== -->
+<nav class="bg-neutral-900/90 backdrop-blur p-4 border-b border-neutral-800 sticky top-0 z-20">
+  <div class="container mx-auto flex justify-between items-center">
+    <div class="text-xl sm:text-2xl font-semibold text-white">Jamil Omer</div>
+
+    <div class="hidden md:flex gap-4">
+      <a href="index.html" class="hover:text-white">Home</a>
+      <a href="resume.html" class="hover:text-white">Resume</a>
+      <a href="projects.html" class="text-white underline">Projects</a>
+      <a href="https://github.com/memillyow" target="_blank" class="hover:text-white">GitHub</a>
+      <a href="contact-me.html" class="hover:text-white">Contact</a>
+    </div>
+
+    <button id="menuToggle" class="md:hidden p-2 rounded-lg hover:bg-neutral-800">
+      <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="hidden bg-neutral-900 border border-neutral-800 p-4">
+    <a href="index.html" class="block py-2">Home</a>
+    <a href="resume.html" class="block py-2">Resume</a>
+    <a href="projects.html" class="block py-2 text-white">Projects</a>
+    <a href="contact-me.html" class="block py-2">Contact</a>
+  </div>
+</nav>
+
+<!-- ===== MAIN ===== -->
+<main class="flex-grow container mx-auto px-4 py-8">
+
+  <h1 class="text-3xl font-bold mb-6 text-white">Projects</h1>
+
+  <!-- Retro window -->
+  <div class="bg-neutral-900 rounded-2xl border border-neutral-800 shadow-xl overflow-hidden">
+    <div class="h-8 bg-gradient-to-r from-neutral-800 to-neutral-700 flex items-center justify-between px-4">
+      <span class="text-sm font-semibold text-white">projects.exe</span>
+      <div class="flex gap-2">
+        <i data-lucide="minimize-2" class="w-4 h-4"></i>
+        <i data-lucide="maximize-2" class="w-4 h-4"></i>
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </div>
+    </div>
+
+    <div class="bg-neutral-950 p-6">
+      <!-- Filters -->
+      <div id="tagContainer" class="flex flex-wrap gap-2 mb-6"></div>
+
+      <!-- Projects -->
+      <div id="projectsList" class="space-y-4"></div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="bg-neutral-900 border-t border-neutral-800 p-4 text-center text-neutral-400 text-sm">
+  Built with caffeine and curiosity by milly
+</footer>
+
+<!-- ===== SCRIPT ===== -->
+<script>
+lucide.createIcons();
+
+/* Mobile menu */
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+menuToggle.addEventListener("click", () => {
+  mobileMenu.classList.toggle("hidden");
+});
+
+/* ===== GitHub Auto Sync ===== */
+const GITHUB_USER = "memillyow";
+const API_URL = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100`;
+
+let projects = [];
+let selectedTags = [];
+
+async function fetchRepos() {
+  const res = await fetch(API_URL, {
+    headers: {
+      Accept: "application/vnd.github.mercy-preview+json"
+    }
+  });
+  return res.json();
+}
+
+function format(text) {
+  return text.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function mapRepo(repo) {
+  return {
+    id: repo.id,
+    title: format(repo.name),
+    description: repo.description || "No description provided.",
+    url: repo.html_url,
+    tags: repo.topics || [],
+    stars: repo.stargazers_count
+  };
+}
+
+function renderTags() {
+  const allTags = [...new Set(projects.flatMap(p => p.tags))];
+  const container = document.getElementById("tagContainer");
+
+  container.innerHTML = allTags.map(tag => `
+    <button
+      onclick="toggleTag('${tag}')"
+      class="px-3 py-1 rounded-full text-sm border border-neutral-700
+      ${selectedTags.includes(tag) ? 'bg-white text-neutral-900' : 'bg-neutral-900 hover:bg-neutral-800'}">
+      ${format(tag)}
+    </button>
+  `).join("");
+}
+
+function renderProjects() {
+  const container = document.getElementById("projectsList");
+  const filtered = selectedTags.length
+    ? projects.filter(p => selectedTags.every(t => p.tags.includes(t)))
+    : projects;
+
+  container.innerHTML = filtered.map(p => `
+    <div class="border border-neutral-800 rounded-xl p-4 hover:bg-neutral-900 transition">
+      <div class="flex justify-between items-center cursor-pointer"
+           onclick="toggleDetails(${p.id})">
+        <h3 class="text-lg font-semibold">${p.title}</h3>
+        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+      </div>
+
+      <p class="text-neutral-400 mt-2">${p.description}</p>
+
+      <div class="flex flex-wrap gap-2 mt-2">
+        ${p.tags.map(t => `
+          <span class="text-xs bg-neutral-800 px-2 py-1 rounded-full">${format(t)}</span>
+        `).join("")}
+      </div>
+
+      <a href="${p.url}" target="_blank"
+         class="inline-flex items-center gap-1 mt-3 text-sm text-neutral-300 hover:text-white">
+        <i data-lucide="github" class="w-4 h-4"></i> View on GitHub
+      </a>
+
+      <div id="details-${p.id}" class="hidden mt-3 text-neutral-300">
+        ⭐ ${p.stars} stars
+      </div>
+    </div>
+  `).join("");
+
+  lucide.createIcons();
+}
+
+function toggleDetails(id) {
+  document.getElementById(`details-${id}`).classList.toggle("hidden");
+}
+
+function toggleTag(tag) {
+  selectedTags.includes(tag)
+    ? selectedTags = selectedTags.filter(t => t !== tag)
+    : selectedTags.push(tag);
+
+  renderTags();
+  renderProjects();
+}
+
+async function loadProjects() {
+  const repos = await fetchRepos();
+
+  projects = repos
+    .filter(r => !r.fork)
+    .filter(r => r.name !== "memillyow.github.io")
+    .filter(r => r.topics.includes("web-development"))
+    .map(mapRepo);
+
+  renderTags();
+  renderProjects();
+}
+
+loadProjects();
+</script>
+
+</body>
+</html>
