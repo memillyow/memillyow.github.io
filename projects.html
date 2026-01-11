@@ -79,13 +79,14 @@ menuToggle.addEventListener("click", () => {
   mobileMenu.classList.toggle("hidden");
 });
 
-/* ===== GitHub Auto Sync ===== */
+/* ===== GitHub Sync ===== */
 const GITHUB_USER = "memillyow";
 const API_URL = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100`;
 
 let projects = [];
 let selectedTags = [];
 
+/* Fetch repos */
 async function fetchRepos() {
   const res = await fetch(API_URL, {
     headers: {
@@ -95,6 +96,7 @@ async function fetchRepos() {
   return res.json();
 }
 
+/* Helpers */
 function format(text) {
   return text.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
 }
@@ -110,25 +112,46 @@ function mapRepo(repo) {
   };
 }
 
+/* Render tags dynamically */
 function renderTags() {
-  const allTags = [...new Set(projects.flatMap(p => p.tags))];
   const container = document.getElementById("tagContainer");
+  const allTags = [...new Set(projects.flatMap(p => p.tags))];
+
+  if (!allTags.length) {
+    container.innerHTML = `
+      <span class="text-neutral-500 italic">No topics found</span>
+    `;
+    return;
+  }
 
   container.innerHTML = allTags.map(tag => `
     <button
       onclick="toggleTag('${tag}')"
       class="px-3 py-1 rounded-full text-sm border border-neutral-700
-      ${selectedTags.includes(tag) ? 'bg-white text-neutral-900' : 'bg-neutral-900 hover:bg-neutral-800'}">
+      ${selectedTags.includes(tag)
+        ? 'bg-white text-neutral-900'
+        : 'bg-neutral-900 hover:bg-neutral-800'}">
       ${format(tag)}
     </button>
   `).join("");
 }
 
+/* Render projects */
 function renderProjects() {
   const container = document.getElementById("projectsList");
+
   const filtered = selectedTags.length
     ? projects.filter(p => selectedTags.every(t => p.tags.includes(t)))
     : projects;
+
+  if (!filtered.length) {
+    container.innerHTML = `
+      <div class="border border-neutral-800 rounded-xl p-6 text-neutral-400 italic">
+        No projects match the selected filters.
+      </div>
+    `;
+    return;
+  }
 
   container.innerHTML = filtered.map(p => `
     <div class="border border-neutral-800 rounded-xl p-4 hover:bg-neutral-900 transition">
@@ -142,13 +165,16 @@ function renderProjects() {
 
       <div class="flex flex-wrap gap-2 mt-2">
         ${p.tags.map(t => `
-          <span class="text-xs bg-neutral-800 px-2 py-1 rounded-full">${format(t)}</span>
+          <span class="text-xs bg-neutral-800 px-2 py-1 rounded-full">
+            ${format(t)}
+          </span>
         `).join("")}
       </div>
 
       <a href="${p.url}" target="_blank"
          class="inline-flex items-center gap-1 mt-3 text-sm text-neutral-300 hover:text-white">
-        <i data-lucide="github" class="w-4 h-4"></i> View on GitHub
+        <i data-lucide="github" class="w-4 h-4"></i>
+        View on GitHub
       </a>
 
       <div id="details-${p.id}" class="hidden mt-3 text-neutral-300">
@@ -160,6 +186,7 @@ function renderProjects() {
   lucide.createIcons();
 }
 
+/* Interactions */
 function toggleDetails(id) {
   document.getElementById(`details-${id}`).classList.toggle("hidden");
 }
@@ -173,12 +200,12 @@ function toggleTag(tag) {
   renderProjects();
 }
 
+/* Load everything */
 async function loadProjects() {
   const repos = await fetchRepos();
 
   projects = repos
     .filter(r => !r.fork)
-    .filter(r => r.name !== "memillyow.github.io")
     .map(mapRepo);
 
   renderTags();
