@@ -179,7 +179,6 @@ async function loadProjects() {
   projects = repos
     .filter(r => !r.fork)
     .filter(r => r.name !== "memillyow.github.io")
-    .filter(r => r.topics.includes("web-development"))
     .map(mapRepo);
 
   renderTags();
