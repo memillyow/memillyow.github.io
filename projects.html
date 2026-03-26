@@ -16,24 +16,55 @@
   <div class="container mx-auto flex justify-between items-center">
     <div class="text-xl sm:text-2xl font-semibold text-white">Jamil Omer</div>
 
-    <div class="hidden md:flex gap-4">
-      <a href="index.html" class="hover:text-white">Home</a>
-      <a href="resume.html" class="hover:text-white">Resume</a>
-      <a href="projects.html" class="text-white underline">Projects</a>
-      <a href="https://github.com/memillyow" target="_blank" class="hover:text-white">GitHub</a>
-      <a href="contact-me.html" class="hover:text-white">Contact</a>
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center justify-end space-x-4">
+      <a href="index.html" class="flex items-center gap-1 text-neutral-300 hover:text-white transition">
+        <i data-lucide="home" class="w-4 h-4"></i><span>Home</span>
+      </a>
+      <a href="resume.html" class="flex items-center gap-1 text-neutral-300 hover:text-white transition">
+        <i data-lucide="file-text" class="w-4 h-4"></i><span>Resume</span>
+      </a>
+      <a href="projects.html" aria-current="page"
+         class="flex items-center gap-1 text-neutral-200 underline underline-offset-4 decoration-white/40">
+        <i data-lucide="code" class="w-4 h-4"></i><span>Projects</span>
+      </a>
+      <a href="https://github.com/memillyow" target="_blank" rel="noopener noreferrer"
+         class="flex items-center gap-1 text-neutral-300 hover:text-white transition">
+        <i data-lucide="github" class="w-4 h-4"></i><span>GitHub</span>
+      </a>
+      <a href="contact-me.html" class="flex items-center gap-1 text-neutral-300 hover:text-white transition">
+        <i data-lucide="mail" class="w-4 h-4"></i><span>Contact</span>
+      </a>
     </div>
 
-    <button id="menuToggle" class="md:hidden p-2 rounded-lg hover:bg-neutral-800">
+    <!-- Mobile toggle -->
+    <button id="menuToggle"
+            class="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-neutral-200 hover:bg-neutral-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-500"
+            aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle navigation menu">
       <i data-lucide="menu" class="w-6 h-6"></i>
     </button>
   </div>
 
-  <div id="mobileMenu" class="hidden bg-neutral-900 border border-neutral-800 p-4">
-    <a href="index.html" class="block py-2">Home</a>
-    <a href="resume.html" class="block py-2">Resume</a>
-    <a href="projects.html" class="block py-2 text-white">Projects</a>
-    <a href="contact-me.html" class="block py-2">Contact</a>
+  <!-- Mobile menu -->
+  <div id="mobileMenu"
+       class="hidden md:hidden mt-3 absolute right-4 left-4 bg-neutral-900 border border-neutral-800 rounded-xl p-4 shadow-xl z-10">
+    <a href="index.html" class="flex items-center gap-2 text-neutral-200 hover:text-white py-2">
+      <i data-lucide="home" class="w-4 h-4"></i><span>Home</span>
+    </a>
+    <a href="resume.html" class="flex items-center gap-2 text-neutral-300 hover:text-white py-2">
+      <i data-lucide="file-text" class="w-4 h-4"></i><span>Resume</span>
+    </a>
+    <a href="projects.html" aria-current="page"
+       class="flex items-center gap-2 text-neutral-200 underline underline-offset-4 py-2">
+      <i data-lucide="code" class="w-4 h-4"></i><span>Projects</span>
+    </a>
+    <a href="https://github.com/memillyow" target="_blank" rel="noopener noreferrer"
+       class="flex items-center gap-2 text-neutral-300 hover:text-white py-2">
+      <i data-lucide="github" class="w-4 h-4"></i><span>GitHub</span>
+    </a>
+    <a href="contact-me.html" class="flex items-center gap-2 text-neutral-300 hover:text-white py-2">
+      <i data-lucide="mail" class="w-4 h-4"></i><span>Contact</span>
+    </a>
   </div>
 </nav>
 
